@@ -1,23 +1,15 @@
 import './App.css';
-import BankTagContent from './components/BankTagContent/BankTagContent';
-import SideBar from './components/SideBar/SideBar';
-
-const testNav: string[] = [
-  'All Tags',
-  'Bosses',
-  'Skilling',
-  'Quests',
-  'Minigames',
-  'Raids',
-  'Miscellaneous',
-];
+import Nav from './components/nav/Nav';
+import HomePage from './pages/home/HomePage';
 
 function App() {
   return (
     <>
       <div className="app-container">
-        <SideBar navItems={testNav} />
-        <BankTagContent />
+        <Nav />
+        
+          <HomePage />
+        
       </div>
     </>
   );

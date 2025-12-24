@@ -18,11 +18,11 @@ function SideBar({ navItems }: SideBarProps) {
       <div className="sidebar-items">
         <ul>
           {navItems.map((item) => (
-            <li key={item}>
+            <li key={item} className="unselectable-text">
               <a
                 href={`#${item.replaceAll(' ', '')}`}
                 onClick={() => handleSelect(item)}
-                className={selected === item ? 'selected' : ''}
+                className={`${selected === item ? 'selected' : ''}`}
               >
                 {item}
                 <MdKeyboardArrowRight />

@@ -1,0 +1,128 @@
+.details-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  flex-wrap: wrap; /* wrap to next line on small screens */
+}
+
+.result-container svg {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.icon-image {
+  width: 1.5em;
+  height: 1.5em;
+  object-fit: contain;
+}
+
+.create-container button {
+  font-size: 1em;
+}
+
+.create-container {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 2rem;
+}
+
+.create-textarea {
+  width: 60%;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 1.5rem;
+}
+
+.result-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 1rem;
+  background-color: #3b3b3b;
+  padding: 0.9rem;
+  border-radius: 10px;
+  position: relative;
+  flex-wrap: wrap; /* allow children to wrap */
+  min-width: 0; /* enable wrapping in flex items */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  will-change: transform;
+}
+
+.result-box:hover {
+  transform: translateY(-1px) scale(1.005);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-box {
+    transition: none;
+  }
+  .result-box:hover {
+    transform: none;
+  }
+}
+
+.result-container {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto; /* grow rows to fit content */
+  gap: 1rem;
+  grid-template-areas:
+    'box-validation box-validation'
+    'box-name      box-icon'
+    'box-tags     box-layout';
+}
+
+@media (max-width: 56em) {
+  .result-container {
+    width: 90%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      'box-validation'
+      'box-name'
+      'box-icon'
+      'box-layout';
+  }
+
+  .create-textarea {
+    width: 80%;
+  }
+}
+
+@media (max-width: 42em) {
+}
+
+.valid-text {
+  color: green;
+}
+
+.invalid-text {
+  color: red;
+}
+
+.info-icon {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  /* optional size */
+  width: 20px;
+  height: 20px;
+}

@@ -4,11 +4,12 @@ import './HomePage.css';
 const testNav: string[] = [
   'All Tags',
   'Favorites',
-  'Bosses',
+  'PvM',
+  'PvP',
   'Skilling',
-  'Quests',
-  'Minigames',
-  'Raids',
+  'Clue',
+  'Minigame',
+  'Quest',
   'Miscellaneous',
 ];
 

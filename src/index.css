@@ -12,6 +12,12 @@ body {
   padding: 0;
 }
 
+html,
+body {
+  height: 100%;
+  background-color: #1b1a1a; /* keep background consistent beyond viewport */
+}
+
 #root {
   min-height: 100vh;
   font-family: 'RuneScape-Plain-12', Arial, sans-serif;
@@ -33,6 +39,13 @@ body {
 
   /* Optional: Change cursor to default arrow to indicate text is not interactive */
   cursor: default;
+}
+
+/* Hidden scrollbar */
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 main {

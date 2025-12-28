@@ -7,8 +7,8 @@ export type BankTagData = {
 
 export type CreateBankTagPayload = {
   name: string;
-  icon: string;
+  iconId: string;
   import_string: string;
   layout: boolean;
-  tags?: string[] | null;
+  tags: string[];
 };

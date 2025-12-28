@@ -1,6 +1,7 @@
 .details-text {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5em;
   flex-wrap: wrap; /* wrap to next line on small screens */
 }
@@ -8,6 +9,16 @@
 .result-container svg {
   width: 1.5em;
   height: 1.5em;
+}
+
+/* Override for the add-tag plus icon */
+.result-container .add-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.add-icon:hover {
+  color: yellow; /* change color on hover */
 }
 
 .icon-image {
@@ -39,49 +50,81 @@
   border-radius: 5px;
   resize: vertical;
   font-size: 1.5rem;
+  /* Keep scrollable but hide scrollbar */
+  overflow: auto; /* allow scrolling */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Chrome, Safari, and Edge (WebKit) */
+.create-textarea::-webkit-scrollbar {
+  display: none; /* hide scrollbar visuals */
+}
+
+/* Valid/invalid glow states */
+.create-textarea.valid-glow {
+  border-color: #2ecc71; /* green */
+  box-shadow: 0 0 0 10px rgba(46, 204, 113, 0.15);
+}
+
+.create-textarea.invalid-glow {
+  border-color: #e74c3c; /* red */
+  box-shadow: 0 0 0 10px rgba(231, 76, 60, 0.15);
 }
 
 .result-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   gap: 1rem;
-  background-color: #3b3b3b;
-  padding: 0.9rem;
+  border: 1px solid #444;
+  padding: 1rem;
   border-radius: 10px;
   position: relative;
   flex-wrap: wrap; /* allow children to wrap */
   min-width: 0; /* enable wrapping in flex items */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-  will-change: transform;
 }
 
-.result-box:hover {
-  transform: translateY(-1px) scale(1.005);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.items-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+  max-height: 350px; /* constrain box height */
+  overflow-y: auto; /* scroll vertically when overflowing */
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .result-box {
-    transition: none;
-  }
-  .result-box:hover {
-    transform: none;
-  }
+/* Chrome, Safari, and Edge (WebKit) */
+.items-box::-webkit-scrollbar {
+  display: none;
+}
+
+.items-box img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Ensure long tag names wrap inside the form box */
+.tag-name .details-text {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .result-container {
   width: 80%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto; /* grow rows to fit content */
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto auto; /* grow rows to fit content */
   gap: 1rem;
   grid-template-areas:
-    'box-validation box-validation'
-    'box-name      box-icon'
-    'box-tags     box-layout';
+    'box-form      box-bank-tab'
+    'box-form     box-bank-tab'
+    'box-tags     box-bank-tab';
 }
 
 @media (max-width: 56em) {
@@ -90,10 +133,9 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
-      'box-validation'
-      'box-name'
-      'box-icon'
-      'box-layout';
+      'box-form'
+      'box-bank-tab'
+      'box-tags';
   }
 
   .create-textarea {

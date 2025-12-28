@@ -12,6 +12,7 @@ export interface CheckBankTagStringResult {
   layout: boolean | null;
   icon: string | null;
   tagName: string | null;
+  itemIds: string[] | null;
 }
 
 export function checkBankTagString(tag: string): CheckBankTagStringResult {
@@ -31,6 +32,7 @@ export function checkBankTagString(tag: string): CheckBankTagStringResult {
       layout: null,
       icon: null,
       tagName: null,
+      itemIds: null,
     };
   }
 
@@ -48,11 +50,35 @@ export function checkBankTagString(tag: string): CheckBankTagStringResult {
         layout: null,
         icon: null,
         tagName: null,
+        itemIds: null,
       };
     }
   }
 
-  return { result: { isValid: true }, layout, icon: tagStringArr[3], tagName: tagStringArr[2] };
+  // If valid, slice itemIds from the 4th element (index 4) up to 'layout' or end
+  let startIdx = 4; // start after icon id
+  const endIdx = tagStringArr.length - 1; // 15 - 1 = 14
+  const layoutIdx = tagStringArr.indexOf('layout', startIdx); // 7
+  let itemIds: string[] = [];
+
+  if (layoutIdx !== -1) {
+    startIdx = layoutIdx + 2; // 9
+    for (let i = startIdx; i < tagStringArr.length; i += 2) {
+      console.log('Adding item ID:', tagStringArr[i]);
+      itemIds.push(tagStringArr[i]);
+    }
+  } else {
+    itemIds = tagStringArr.slice(startIdx, endIdx);
+  }
+
+  console.log('Extracted item IDs:', itemIds);
+  return {
+    result: { isValid: true },
+    layout,
+    icon: tagStringArr[3],
+    tagName: tagStringArr[2],
+    itemIds,
+  };
 }
 
 function bankTagStringToArray(tag: string): string[] {

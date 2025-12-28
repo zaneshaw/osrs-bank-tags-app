@@ -16,8 +16,9 @@ import { checkBankTagString, type CheckBankTagStringResult } from '@/util/checkB
 import { useState } from 'react';
 import { RxCross2, RxCheck } from 'react-icons/rx';
 import { FaRegQuestionCircle } from 'react-icons/fa';
-import { TagsEnum, type Tags } from './models';
+import { TagsEnum, type Tags, CreateSchema } from './models';
 import { FaRegSquarePlus } from 'react-icons/fa6';
+import { useCreateBankTab } from '@/hooks/useCreateBankTab';
 
 function Create() {
   const [importString, setImportString] = useState('');
@@ -28,6 +29,8 @@ function Create() {
   const [tagName, setTagName] = useState<string | null>(null);
   const [selectedTags, setSelectedTags] = useState<Tags[]>([]);
   const [itemIds, setItemIds] = useState<string[] | null>(null);
+
+  const createBankTab = useCreateBankTab();
 
   const handleImportClipboard = async () => {
     try {
@@ -49,23 +52,55 @@ function Create() {
     }
   };
 
-  const handleSubmit = () => {
-    // For demonstration, we'll just log the data
-    console.log('Submitting Bank Tag with the following data:');
-    console.log({
-      icon,
-      import_string: importString,
-      layout,
-      tagName,
-      tags: selectedTags,
-    });
-    // Here you would typically send the data to your backend or process it further
+  const handleSubmit = async () => {
+    try {
+      if (!isValid || !icon || !tagName) {
+        setMessage('Please import a valid bank tag first.');
+        return;
+      }
+
+      const toValidate = {
+        icon: icon,
+        tagName: tagName,
+        importString: importString,
+        layout: !!layout,
+        tags: selectedTags,
+        likes: 0,
+      };
+
+      const parsed = CreateSchema.safeParse(toValidate);
+      if (!parsed.success) {
+        const firstErr = parsed.error.issues[0]?.message ?? 'Invalid form data';
+
+        setMessage(firstErr);
+        return;
+      }
+
+      const payload = {
+        name: parsed.data.tagName,
+        icon: parsed.data.icon,
+        import_string: parsed.data.importString,
+        layout: parsed.data.layout,
+        tags: parsed.data.tags,
+        likes: parsed.data.likes,
+      };
+
+      await createBankTab.mutateAsync(payload);
+      //reload page
+      window.location.pathname = '/';
+      setMessage('Bank tab created!');
+      // Optionally clear selections
+      // setSelectedTags([]);
+    } catch (err) {
+      console.error('Submit failed:', err);
+      setMessage('Failed to create bank tab.');
+    }
   };
 
   return (
     <div className="create-container">
       <Button size="sm" onClick={handleImportClipboard}>
-        Import Clipboard
+        Import From Clipboard
       </Button>
       <Textarea
         className={`create-textarea ${
@@ -75,14 +110,18 @@ function Create() {
         value={importString}
         readOnly={true}
       />
-      <Text className={isValid ? 'valid-text' : 'invalid-text'}>{message ? message : ''}</Text>
+      <Text className={isValid ? 'valid-text' : 'invalid-text'}>{message ? message : ' '}</Text>
       <div className="result-container">
         <BankTagForm layout={layout} icon={icon} tagName={tagName} />
         <BankTabDisplay itemIds={itemIds ? itemIds : []} />
         <TagsDisplay selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
       </div>
 
-      <Button size="sm" disabled={!isValid || selectedTags.length === 0} onClick={handleSubmit}>
+      <Button
+        size="sm"
+        disabled={!isValid || selectedTags.length === 0 || createBankTab.isPending}
+        onClick={handleSubmit}
+      >
         Submit
       </Button>
     </div>
@@ -99,9 +138,7 @@ function BankTagForm({
   return (
     <div className="result-box" style={{ gridArea: 'box-form' }}>
       <div className="tag-name">
-        <Text className="details-text">
-          Name: <div style={{ color: 'yellow' }}>{tagName ? tagName : null}</div>
-        </Text>
+        <Text className="details-text">Name: {tagName ? tagName : null}</Text>
       </div>
       <div className="tag-icon">
         <Text className="details-text">
@@ -136,7 +173,9 @@ function BankTagForm({
 function BankTabDisplay({ itemIds }: { itemIds: string[] }) {
   return (
     <div className="result-box" style={{ gridArea: 'box-bank-tab' }}>
-      <Text className="details-text">Bank Tab Preview:</Text>
+      <Text className="details-text" style={{ width: '100%', borderBottom: '1px solid #fff' }}>
+        Bank Tab Preview:
+      </Text>
       <div className="items-box hide-scrollbar">
         {/* Item icons will render here starting top-left */}
         {itemIds.map((itemId) => (
@@ -164,6 +203,7 @@ function TagsDisplay({
   const handleAddCustomTag = (tag: string) => {
     if (tag && !selectableTags.includes(tag)) {
       setSelectableTags((prev) => [...prev, tag as Tags]);
+      setCustomTag('');
     }
   };
   return (

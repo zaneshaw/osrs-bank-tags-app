@@ -8,15 +8,11 @@ function Nav() {
       <Text className="nav-logo nav-button">
         <Link to="/">OSRS Bank Tags </Link>
       </Text>
-      <nav className="nav-container">
-        <ul>
-          <li>
-            <Link to="/create" className="nav-import-button nav-button">
-              Import Bank Tab
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <Text>
+        <Link to="/create" className="nav-import-button nav-button">
+          Import Bank Tab
+        </Link>
+      </Text>
     </div>
   );
 }

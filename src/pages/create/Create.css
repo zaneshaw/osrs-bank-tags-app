@@ -28,18 +28,19 @@
 }
 
 .create-container button {
-  font-size: 1em;
+  font-size: 1.3rem;
 }
 
 .create-container {
-  margin: 2rem;
+  margin: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1em;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
-  font-size: 2rem;
+  gap: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
 .create-textarea {
@@ -64,12 +65,10 @@
 /* Valid/invalid glow states */
 .create-textarea.valid-glow {
   border-color: #2ecc71; /* green */
-  box-shadow: 0 0 0 10px rgba(46, 204, 113, 0.15);
 }
 
 .create-textarea.invalid-glow {
   border-color: #e74c3c; /* red */
-  box-shadow: 0 0 0 10px rgba(231, 76, 60, 0.15);
 }
 
 .result-box {
@@ -83,15 +82,13 @@
   border-radius: 10px;
   position: relative;
   flex-wrap: wrap; /* allow children to wrap */
-  min-width: 0; /* enable wrapping in flex items */
 }
 
 .items-box {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 1rem;
+  gap: 1.03rem;
   max-height: 350px; /* constrain box height */
   overflow-y: auto; /* scroll vertically when overflowing */
   overflow-x: hidden;

@@ -9,5 +9,8 @@ export function useCreateBankTab() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['bankTabs'] });
     },
+    onError: (error) => {
+      console.error('Error creating bank tab:', error);
+    },
   });
 }

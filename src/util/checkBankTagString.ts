@@ -64,14 +64,12 @@ export function checkBankTagString(tag: string): CheckBankTagStringResult {
   if (layoutIdx !== -1) {
     startIdx = layoutIdx + 2; // 9
     for (let i = startIdx; i < tagStringArr.length; i += 2) {
-      console.log('Adding item ID:', tagStringArr[i]);
       itemIds.push(tagStringArr[i]);
     }
   } else {
     itemIds = tagStringArr.slice(startIdx, endIdx);
   }
 
-  console.log('Extracted item IDs:', itemIds);
   return {
     result: { isValid: true },
     layout,

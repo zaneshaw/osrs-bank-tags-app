@@ -7,7 +7,7 @@ export type BankTagData = {
 
 export type CreateBankTagPayload = {
   name: string;
-  iconId: string;
+  icon: string;
   import_string: string;
   layout: boolean;
   tags: string[];

@@ -13,7 +13,7 @@
 .bank-tab-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: yellow;
+  color: #eab308;
 }
 
 .bank-tab-content {
@@ -147,7 +147,7 @@
 }
 
 .loading-text {
-  color: yellow;
+  color: #eab308;
   font-size: 1.5rem;
   font-weight: bold;
 }

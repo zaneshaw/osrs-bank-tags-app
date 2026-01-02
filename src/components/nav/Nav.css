@@ -2,6 +2,7 @@
   position: fixed;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   top: 0;
   inset-inline: 0;
@@ -12,21 +13,25 @@
 }
 
 .nav-logo {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   display: flex;
   font-weight: bold;
   width: 250px;
-  justify-content: center;
-  align-items: center;
+  place-content: center;
 }
 
-.nav-button:hover {
-  cursor: pointer;
-  color: rgb(255, 255, 0);
+.nav-logo:hover {
+  color: #eab308;
 }
 
-.nav-import-button {
+.nav-button {
   font-size: 1rem;
+}
+
+.nav-buttons-container {
+  display: flex;
+  gap: 1rem;
+  padding-inline: 1rem;
 }
 
 @media (max-width: 42em) {

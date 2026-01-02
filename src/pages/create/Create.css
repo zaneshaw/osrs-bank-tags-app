@@ -18,11 +18,11 @@
 }
 
 .add-icon:hover {
-  color: yellow; /* change color on hover */
+  color: #eab308; /* change color on hover */
 }
 
 .detail {
-  color: yellow;
+  color: #eab308;
 }
 
 .icon-image {

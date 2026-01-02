@@ -34,7 +34,7 @@
 
 .sidebar-container li a:hover {
   background-color: #444;
-  color: yellow;
+  color: #eab308;
   cursor: pointer;
 }
 
@@ -64,7 +64,7 @@
 
 .selected {
   background-color: #666;
-  color: yellow;
+  color: #eab308;
   font-weight: bold;
 }
 

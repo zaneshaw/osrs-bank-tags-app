@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function Nav() {
   return (
     <div className="nav-bar">
-      <Text className="nav-logo nav-button">
+      <Text className="nav-logo">
         <Link to="/">OSRS Bank Tags </Link>
       </Text>
       {/* <Text>
@@ -13,11 +13,18 @@ function Nav() {
           Import Bank Tab
         </Link>
       </Text> */}
-      <Link to="/import" className="nav-import-button nav-button">
-        <Button colorPalette="yellow" variant="outline" className="nav-button">
-          Import Bank Tab
-        </Button>
-      </Link>
+      <div className="nav-buttons-container">
+        <Link to="/import" className="nav-import-button nav-button">
+          <Button colorPalette="yellow" variant="outline" className="nav-button">
+            Import Bank Tab
+          </Button>
+        </Link>
+        <Link to="/favorites" className="nav-import-button nav-button">
+          <Button colorPalette="yellow" variant="outline" className="nav-button">
+            Favorites
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

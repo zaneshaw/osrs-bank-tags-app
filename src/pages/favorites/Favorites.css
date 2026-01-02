@@ -1,0 +1,15 @@
+.favorites-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem;
+  color: #eab308;
+  display: flex;
+  place-content: center;
+}
+
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}

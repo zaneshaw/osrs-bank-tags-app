@@ -224,7 +224,7 @@ function TagsDisplay({
                   value={value}
                 >
                   <Checkbox.HiddenInput />
-                  <Checkbox.Control boxSize="1em" border="1px solid yellow" />
+                  <Checkbox.Control boxSize="1em" border="1px solid #eab308" />
                   <Checkbox.Label fontSize={'2xl'}>{value}</Checkbox.Label>
                 </Checkbox.Root>
               )}
@@ -234,7 +234,7 @@ function TagsDisplay({
                 fontSize="2xl"
                 height="45px"
                 variant="subtle"
-                focusRingColor={'yellow'}
+                focusRingColor={'#eab308'}
                 placeholder="Custom Tag"
                 value={customTag}
                 onChange={(e) => setCustomTag(e.target.value)}

@@ -14,7 +14,6 @@ import './Create.css';
 import '../../index.css';
 import { checkBankTagString, type CheckBankTagStringResult } from '@/util/checkBankTagString';
 import { useState } from 'react';
-import { RxCross2, RxCheck } from 'react-icons/rx';
 import { FaRegQuestionCircle } from 'react-icons/fa';
 import { TagsEnum, type Tags, CreateSchema } from './models';
 import { FaRegSquarePlus } from 'react-icons/fa6';
@@ -62,12 +61,17 @@ function Create() {
         return;
       }
 
+      // add tagName to array,change tags to lowercase and remove duplicates
+      const selectedTagsWithName = [...selectedTags, tagName];
+      const selectedTagsSet = new Set(selectedTagsWithName.map((tag) => tag.toLowerCase()));
+      const finalTags = Array.from(selectedTagsSet);
+
       const toValidate = {
         icon: icon,
         tagName: tagName,
         importString: importString,
         layout: !!layout,
-        tags: selectedTags,
+        tags: finalTags,
         likes: 0,
       };
 
@@ -142,7 +146,9 @@ function BankTagForm({
   return (
     <div className="grid-box" style={{ gridArea: 'box-form' }}>
       <div className="tag-name">
-        <Text className="details-text">Name: {tagName ? tagName : null}</Text>
+        <Text className="details-text">
+          Name: <p className="detail">{tagName ? tagName : null}</p>
+        </Text>
       </div>
       <div className="tag-icon">
         <Text className="details-text">
@@ -159,7 +165,7 @@ function BankTagForm({
       <div className="tag-layout">
         <Text className="details-text">
           Layout Enabled:{' '}
-          {layout ? <RxCheck color="green" /> : layout === false ? <RxCross2 color="red" /> : null}
+          <p className="detail">{layout ? 'Yes' : layout === false ? 'No' : null}</p>
         </Text>
         <div className="info-icon">
           <Tooltip

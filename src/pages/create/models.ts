@@ -20,7 +20,7 @@ export const CreateSchema = z.object({
   tags: z
     .array(z.string())
     .min(1, { message: 'You must select at least one tag.' })
-    .max(5, { message: 'You can select up to five tags.' }),
+    .max(20, { message: 'You can select up to twenty tags.' }),
   likes: z.number().default(0),
 });
 export type CreateFormData = z.infer<typeof CreateSchema>;

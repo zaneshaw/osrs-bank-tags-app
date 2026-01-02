@@ -1,5 +1,5 @@
 import './Nav.css';
-import { Text } from '@chakra-ui/react';
+import { Button, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 function Nav() {
@@ -8,11 +8,16 @@ function Nav() {
       <Text className="nav-logo nav-button">
         <Link to="/">OSRS Bank Tags </Link>
       </Text>
-      <Text>
+      {/* <Text>
         <Link to="/create" className="nav-import-button nav-button">
           Import Bank Tab
         </Link>
-      </Text>
+      </Text> */}
+      <Link to="/import" className="nav-import-button nav-button">
+        <Button colorPalette="yellow" variant="outline" className="nav-button">
+          Import Bank Tab
+        </Button>
+      </Link>
     </div>
   );
 }

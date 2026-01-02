@@ -34,6 +34,7 @@
 
 .sidebar-container li a:hover {
   background-color: #444;
+  color: yellow;
   cursor: pointer;
 }
 
@@ -59,6 +60,12 @@
 
 .sidebar-items {
   display: block; /* visible on wide screens */
+}
+
+.selected {
+  background-color: #666;
+  color: yellow;
+  font-weight: bold;
 }
 
 /* small screens: collapse into hamburger */

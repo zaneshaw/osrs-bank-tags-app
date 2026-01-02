@@ -5,14 +5,16 @@ import { useState } from 'react';
 
 interface SideBarProps {
   navItems: string[];
+  selectedCategory: string;
+  setSelectedCategory: (value: string) => void;
 }
 
-function SideBar({ navItems }: SideBarProps) {
-  const [selected, setSelected] = useState<string | null>(null);
+function SideBar({ navItems, selectedCategory, setSelectedCategory }: SideBarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (item: string) => {
-    setSelected(item);
+    setSelectedCategory(item.toLowerCase());
+
     setIsOpen(false); // close menu on selection (mobile)
   };
 
@@ -35,11 +37,11 @@ function SideBar({ navItems }: SideBarProps) {
           {navItems.map((item) => (
             <li key={item} className="unselectable-text">
               <a
-                href={item === 'All Tags' ? '#' : `#${item}`}
+                href={`#${item}`}
                 onClick={() => handleSelect(item)}
-                className={`${selected === item ? 'selected' : ''}`}
+                className={`${selectedCategory === item.toLocaleLowerCase() ? 'selected' : ''}`}
               >
-                {item}
+                {item === '' ? 'All Tags' : item}
                 <MdKeyboardArrowRight />
               </a>
             </li>

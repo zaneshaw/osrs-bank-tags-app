@@ -18,13 +18,13 @@ function BankTab() {
   const [copySuccess, setCopySuccess] = useState<boolean | null>(null);
 
   if (isPending) {
-    return <p>Loading bank tab...</p>;
+    return <p className="center-message loading-text">Loading bank tab...</p>;
   }
 
   if (isError || !tabData) {
     console.log('Error fetching bank tab data or data is undefined.', error);
 
-    return <p>Error loading bank tab.</p>;
+    return <p className="center-message error-text">Error loading bank tab.</p>;
   }
 
   const handleFav = () => {

@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <App />, // layout with Nav + Outlet
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'create', element: <Create /> },
+      { path: 'import', element: <Create /> },
       { path: 'banktab/:tabId', element: <BankTab /> },
     ],
   },

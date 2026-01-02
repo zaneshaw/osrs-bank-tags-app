@@ -2,7 +2,7 @@
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+
   top: 0;
   inset-inline: 0;
   height: 60px;
@@ -26,9 +26,7 @@
 }
 
 .nav-import-button {
-  width: 250px;
-  display: flex;
-  justify-content: center;
+  font-size: 1rem;
 }
 
 @media (max-width: 42em) {

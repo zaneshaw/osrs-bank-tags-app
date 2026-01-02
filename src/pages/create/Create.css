@@ -21,6 +21,10 @@
   color: yellow; /* change color on hover */
 }
 
+.detail {
+  color: yellow;
+}
+
 .icon-image {
   width: 1.5em;
   height: 1.5em;

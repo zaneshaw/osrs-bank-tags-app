@@ -1,9 +1,9 @@
 import BankTagContent from '@/components/BankTagContent/BankTagContent';
 import SideBar from '@/components/SideBar/SideBar';
 import './HomePage.css';
+import { useState } from 'react';
 const testNav: string[] = [
-  'All Tags',
-  'Favorites',
+  '',
   'PvM',
   'PvP',
   'Skilling',
@@ -14,10 +14,16 @@ const testNav: string[] = [
 ];
 
 function HomePage() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+
   return (
     <div className="home-container">
-      <SideBar navItems={testNav} />
-      <BankTagContent />
+      <SideBar
+        navItems={testNav}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
+      <BankTagContent selectedCategory={selectedCategory} />
     </div>
   );
 }

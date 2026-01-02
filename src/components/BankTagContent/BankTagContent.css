@@ -2,10 +2,9 @@
   display: grid;
   height: 100%;
   min-height: 0; /* critical for grid child scrolling */
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
   grid-auto-rows: 200px;
   gap: 1em;
-  text-align: center;
   justify-content: center;
   align-content: start;
   overflow-y: auto;

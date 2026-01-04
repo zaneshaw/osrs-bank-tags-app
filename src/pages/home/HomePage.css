@@ -1,7 +1,7 @@
 .home-container {
   display: grid;
   grid-template-columns: 250px 1fr;
-
+  height: calc(100vh - 66px);
   overflow: hidden; /* keep scrolling inside content area only */
   grid-template-areas: 'sidebar content';
 }

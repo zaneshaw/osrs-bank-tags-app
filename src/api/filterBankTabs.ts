@@ -2,7 +2,7 @@ import supabase from '@/supabase';
 import type { BankTabResponse } from '@/types';
 
 export async function filterBankTabs(category: string): Promise<BankTabResponse[]> {
-  let query = supabase.from('bank-tabs').select('*').order('created_at', { ascending: false });
+  let query = supabase.from('bank_tabs').select('*').order('created_at', { ascending: false });
 
   // Category filter (only when a real tag is selected)
   if (category !== '') {

@@ -3,7 +3,7 @@ import type { CreateBankTagPayload } from '@/types';
 
 export async function createBankTab(payload: CreateBankTagPayload) {
   const { data, error } = await supabase
-    .from('bank-tabs')
+    .from('bank_tabs')
     .insert([
       {
         ...payload,

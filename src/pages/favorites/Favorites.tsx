@@ -1,22 +1,11 @@
-import { useMemo } from 'react';
 import BankTagCard from '@/components/BankTagCard/BankTagCard';
 import './Favorites.css';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
 import { Spinner } from '@chakra-ui/react';
+import { useFavorites } from '@/hooks/useFavorites';
 
 function Favorites() {
-  // 1. Normalize favorites ONCE
-  const favoriteIds = useMemo<string[]>(() => {
-    const raw = localStorage.getItem('myFavorites');
-    if (!raw) return [];
-
-    try {
-      const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
-  }, []);
+  const { favoriteIds } = useFavorites();
 
   // 2. Query (auto-disabled if empty)
   const { data: favorites = [], isLoading, error } = useGetFavorites(favoriteIds);

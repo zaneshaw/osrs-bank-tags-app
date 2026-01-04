@@ -3,35 +3,24 @@ import './BankTagCard.css';
 import type { BankTabResponse } from '@/types';
 import { FaRegCopy } from 'react-icons/fa6';
 import { IoMdHeart, IoMdHeartEmpty } from 'react-icons/io';
-import { useState } from 'react';
 import { Link } from 'react-router';
+import { useFavorites } from '@/hooks/useFavorites';
 
 interface BankTagCardProps {
   data: BankTabResponse;
 }
 
 function BankTagCard({ data }: BankTagCardProps) {
-  const [likedItems, setLikedItems] = useState<string[]>(() =>
-    JSON.parse(localStorage.getItem(`myFavorites`) || '[]')
-  );
-
+  const { isFavorite, toggleFavorite } = useFavorites();
   const handleCopy = () => {
     navigator.clipboard.writeText(data.import_string);
   };
 
   const handleLike = (tagId: string) => {
-    if (likedItems.includes(tagId)) {
-      const updatedItems = likedItems.filter((id: string) => id !== tagId);
-      setLikedItems(updatedItems);
-      localStorage.setItem(`myFavorites`, JSON.stringify(updatedItems));
-    } else {
-      const updatedItems = [...likedItems, tagId];
-      setLikedItems(updatedItems);
-      localStorage.setItem(`myFavorites`, JSON.stringify(updatedItems));
-    }
+    toggleFavorite(tagId);
   };
 
-  const isLiked = likedItems.includes(data.id.toString());
+  const isLiked = isFavorite(data.id.toString());
 
   return (
     <div className="bank-tag-card">

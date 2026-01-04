@@ -10,7 +10,7 @@ import {
   Group,
 } from '@chakra-ui/react';
 import { Tooltip } from '@/components/ui/tooltip';
-import './Create.css';
+import './ImportTab.css';
 import '../../index.css';
 import { checkBankTagString, type CheckBankTagStringResult } from '@/util/checkBankTagString';
 import { useState } from 'react';
@@ -147,7 +147,7 @@ function BankTagForm({
     <div className="grid-box" style={{ gridArea: 'box-form' }}>
       <div className="tag-name">
         <Text className="details-text">
-          Name: <p className="detail">{tagName ? tagName : null}</p>
+          Name: <span className="detail">{tagName ? tagName : null}</span>
         </Text>
       </div>
       <div className="tag-icon">
@@ -165,7 +165,7 @@ function BankTagForm({
       <div className="tag-layout">
         <Text className="details-text">
           Layout Enabled:{' '}
-          <p className="detail">{layout ? 'Yes' : layout === false ? 'No' : null}</p>
+          <span className="detail">{layout ? 'Yes' : layout === false ? 'No' : null}</span>
         </Text>
         <div className="info-icon">
           <Tooltip

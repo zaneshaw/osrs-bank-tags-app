@@ -7,16 +7,15 @@ import { Button, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa6';
 import { RxCross1 } from 'react-icons/rx';
+import { useFavorites } from '@/hooks/useFavorites';
 
 function BankTab() {
   const { tabId } = useParams<{ tabId: string }>();
   const { data: tabData, error: error, isPending, isError } = useGetBankTab(tabId!);
   const itemIds = tabData ? generateItemIds(tabData.import_string.split(',')) : [];
-  const [favoritedState, setFavoritedState] = useState<boolean>(() => {
-    return localStorage.getItem('myFavorites')?.includes(tabId!) ?? false;
-  });
   const [copySuccess, setCopySuccess] = useState<boolean | null>(null);
-
+  const { toggleFavorite, isFavorite } = useFavorites();
+  
   if (isPending) {
     return (
       <p className="center-message loading-text">
@@ -30,20 +29,6 @@ function BankTab() {
 
     return <p className="center-message error-text">Error loading bank tab.</p>;
   }
-
-  const handleFav = () => {
-    const favorites: string[] = JSON.parse(localStorage.getItem('myFavorites') ?? '[]');
-
-    const tabIdStr = tabData.id.toString();
-    const isFavorited = favorites.includes(tabIdStr);
-
-    const nextFavorites = isFavorited
-      ? favorites.filter((id) => id !== tabIdStr)
-      : [...favorites, tabIdStr];
-
-    localStorage.setItem('myFavorites', JSON.stringify(nextFavorites));
-    setFavoritedState(!isFavorited);
-  };
 
   const handleCopyImportString = async () => {
     try {
@@ -73,11 +58,11 @@ function BankTab() {
           </div>
           <div className={`bank-tab-fav`}>
             <Button
-              onClick={handleFav}
+              onClick={() => toggleFavorite(tabData.id.toString())}
               colorPalette={'yellow'}
-              variant={favoritedState ? 'outline' : 'solid'}
+              variant={isFavorite(tabData.id.toString()) ? 'outline' : 'solid'}
             >
-              {favoritedState ? 'Remove Favorite' : 'Favorite'}
+              {isFavorite(tabData.id.toString()) ? 'Remove Favorite' : 'Favorite'}
             </Button>
           </div>
         </div>

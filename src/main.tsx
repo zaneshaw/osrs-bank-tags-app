@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     element: <App />, // layout with Nav + Outlet
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'import-tab', element: <ImportTab /> },
+      { path: 'import', element: <ImportTab /> },
       { path: 'banktab/:tabId', element: <BankTab /> },
       { path: 'favorites', element: <Favorites /> },
     ],

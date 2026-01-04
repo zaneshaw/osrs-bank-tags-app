@@ -4,7 +4,7 @@ import { getFavorites } from '@/api/getFavorites';
 export function useGetFavorites(favoriteIds: string[]) {
   return useQuery({
     queryFn: () => getFavorites(favoriteIds),
-    queryKey: ['favorites', favoriteIds],
+    queryKey: ['favorites'],
     enabled: favoriteIds.length > 0,
   });
 }

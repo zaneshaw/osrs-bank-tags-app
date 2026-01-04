@@ -120,7 +120,7 @@ function Create() {
       <Text className={isValid ? 'valid-text' : 'invalid-text'}>{message ? message : ' '}</Text>
       <div className="result-container">
         <BankTagForm layout={layout} icon={icon} tagName={tagName} />
-        <BankTabDisplay itemIds={itemIds ? itemIds : []} />
+        <BankTabDisplay itemIds={itemIds ?? []} layout={layout ?? false} importString={importString ?? ""} />
         <TagsDisplay selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
         <Button
           className="submit-box"

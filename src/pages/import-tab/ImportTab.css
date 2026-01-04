@@ -99,7 +99,7 @@
 }
 
 /* Chrome, Safari, and Edge (WebKit) */
-.items-box::-webkit-scrollbar {
+hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
@@ -107,6 +107,14 @@
   width: 40px;
   height: 40px;
   object-fit: contain;
+}
+
+.items-box-layout {
+  display: grid;
+  grid-auto-rows: 40px;
+  grid-auto-columns: 40px;
+  grid-template-columns: repeat(8, 1fr);
+  max-height: 661.16px;
 }
 
 /* Ensure long tag names wrap inside the form box */

@@ -72,7 +72,7 @@ function BankTab() {
           </div>
           <div className="bank-tab-likes">Favorites: {tabData.likes}</div>
         </div>
-        <BankTabDisplay itemIds={itemIds} />
+        <BankTabDisplay itemIds={itemIds} layout={tabData.layout} importString={tabData.import_string} />
       </div>
     </div>
   );

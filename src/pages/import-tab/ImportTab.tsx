@@ -9,12 +9,10 @@ import {
   Input,
   Group,
 } from '@chakra-ui/react';
-import { Tooltip } from '@/components/ui/tooltip';
 import './ImportTab.css';
 import '../../index.css';
 import { checkBankTagString, type CheckBankTagStringResult } from '@/util/checkBankTagString';
 import { useState } from 'react';
-import { FaRegQuestionCircle } from 'react-icons/fa';
 import { TagsEnum, type Tags, CreateSchema } from './models';
 import { FaRegSquarePlus } from 'react-icons/fa6';
 import { useCreateBankTab } from '@/hooks/useCreateBankTab';
@@ -117,10 +115,14 @@ function Create() {
         value={importString}
         readOnly={true}
       />
-      <Text className={isValid ? 'valid-text' : 'invalid-text'}>{message ? message : ' '}</Text>
+
       <div className="result-container">
-        <BankTagForm layout={layout} icon={icon} tagName={tagName} />
-        <BankTabDisplay itemIds={itemIds ?? []} layout={layout ?? false} importString={importString ?? ""} />
+        <BankTagForm icon={icon} tagName={tagName} />
+        <BankTabDisplay
+          itemIds={itemIds ?? []}
+          layout={layout ?? false}
+          importString={importString ?? ''}
+        />
         <TagsDisplay selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
         <Button
           className="submit-box"
@@ -132,17 +134,14 @@ function Create() {
           Submit
         </Button>
       </div>
+      <Text className={isValid ? 'valid-text' : 'invalid-text'}>{message ? message : ' '}</Text>
     </div>
   );
 }
 
 export default Create;
 
-function BankTagForm({
-  layout,
-  icon,
-  tagName,
-}: Pick<CheckBankTagStringResult, 'layout' | 'icon' | 'tagName'>) {
+function BankTagForm({ icon, tagName }: Pick<CheckBankTagStringResult, 'icon' | 'tagName'>) {
   return (
     <div className="grid-box" style={{ gridArea: 'box-form' }}>
       <div className="tag-name">
@@ -161,20 +160,6 @@ function BankTagForm({
             />
           ) : null}
         </Text>
-      </div>
-      <div className="tag-layout">
-        <Text className="details-text">
-          Layout Enabled:{' '}
-          <span className="detail">{layout ? 'Yes' : layout === false ? 'No' : null}</span>
-        </Text>
-        <div className="info-icon">
-          <Tooltip
-            content="Enabling layout will show the items in the custom tab as if they were in one single tab, rather than split into multiple custom tabs provided by Jagex, assuming you use those as well. 
-        This can be toggled by right clicking your custom tab in-game and selecting 'Enable Layout'."
-          >
-            <FaRegQuestionCircle />
-          </Tooltip>
-        </div>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@
 }
 
 .bank-tab-content {
-  width: 60%;
+  width: 50%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto; /* grow rows to fit content */
@@ -65,7 +65,7 @@
 
 @media (max-width: 56em) {
   .bank-tab-content {
-    width: 90%;
+    width: 70%;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
     grid-template-areas:

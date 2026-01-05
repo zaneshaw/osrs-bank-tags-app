@@ -1,0 +1,75 @@
+.display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  /* optional size */
+  width: 20px;
+  height: 20px;
+}
+
+.bank-tab-layout {
+  display: inline-flex;
+  align-items: center; /* center icon and text vertically */
+  gap: 8px; /* small spacing between text and status */
+}
+
+.items-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.03rem;
+  max-height: 340px;
+  overflow-y: auto; /* scroll vertically when overflowing */
+}
+
+.items-box img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.items-box-layout {
+  display: grid;
+  width: 100%;
+  grid-auto-rows: 40px;
+  grid-auto-columns: 40px;
+  grid-template-columns: repeat(8, 1fr);
+  height: 360px;
+  overflow-y: auto;
+  border: 1px solid #343434;
+  flex-grow: 1;
+  /* center items in each grid cell */
+  justify-items: center;
+  align-items: center;
+}
+
+/* make sure each image centers itself within its grid cell */
+.items-box-layout img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Optional: hide scrollbar (WebKit) while keeping scrollability */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 80em) {
+  .display-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
